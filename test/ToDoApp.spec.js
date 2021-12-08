@@ -14,12 +14,15 @@ describe('ToDoApp.vue', () => {
     const wrapper = mount(ToDoApp)
 
     const newTodo = wrapper.get('[data-test="new-todo"]')
-
+    
     expect(wrapper.findAll('[data-test="todo"]')).toHaveLength(1)
 
     await wrapper.get('[data-test="new-todo"]').setValue('New Todo')
     await wrapper.get('[data-test="form"]').trigger('submit')
 
- 
+    expect(wrapper.findAll('[data-test="todo"]')).toHaveLength(2)
+
+
+    expect(newTodo.text()).toContain('')
   })
 })
